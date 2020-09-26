@@ -41,9 +41,9 @@ Scroll further down and select the `permissions` your bot needs. (I prefer givin
 A link should be generated between `scopes` and `permissions`. Copy and paste it in your new browser. This link invites your bot to your guild.
 
 ### STEP 4
-If you have git pre installed on your laptop just clone this repo using `git clone `
+If you have git pre installed on your laptop just clone this repo using `git clone https://github.com/anjannair/Rufus-Discord-Bot.git`
 
-If you don't have git download the code from  and extract it. 
+If you don't have git download the code from `https://github.com/anjannair/Rufus-Discord-Bot/archive/master.zip` and extract it. 
 
 ### STEP 5
 Modify the code to your suiting.
