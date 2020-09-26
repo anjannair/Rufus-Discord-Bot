@@ -19,6 +19,8 @@ This is no way affliated to the company Rufus
 
 • Moderation - Ban, kick, warn, prune messages, mute and unmute all and muting and unmuting a user (same goes for deafening) features are included with appropriate permissions.
 
+• AutoModeration - Remove a list of bad words and dangerous links (nsfw included) and keep your server clean.
+
 • Games - Currently 8ball and TicTacToe are included.
 
 • QR code generator for links.
