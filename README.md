@@ -2,7 +2,7 @@
 
 Rufus is a dicord bot with the intention of replacing MEE6. This uses javascript as its programming language and has no SQL database to change the prefix.
 
-The extensive guide to buildidng a Javascript bot can be found [here](discordjs.guide).
+The extensive guide to building a Javascript bot can be found [here](discordjs.guide).
 
 This is no way affliated to the company Rufus
 
