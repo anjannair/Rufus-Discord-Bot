@@ -1,0 +1,23 @@
+{
+  "name": "tutbot",
+  "version": "1.0.0",
+  "description": "A discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anjan Nair",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "cheerio": "^1.0.0-rc.3",
+    "discord-tictactoe": "^2.0.5",
+    "discord.js": "^12.3.1",
+    "eslint": "^7.9.0",
+    "line-reader": "^0.4.0",
+    "node-fetch": "^2.6.1",
+    "node-superfetch": "^0.1.10",
+    "node-virustotal": "^3.32.0",
+    "request": "^2.88.2"
+  }
+}
