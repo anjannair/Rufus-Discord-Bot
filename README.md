@@ -29,24 +29,8 @@ This is no way affliated to the company Rufus
 
 • Heroku integration - A free cloud hosting for small bots for few guilds (servers). The bot remains online 24/7.
 
-# How to host your own bot
-It's really very simple.
+### You can find the step wise method to start creating your bot [over here](https://github.com/anjannair/Rufus-Discord-Bot/wiki) and on how to host it on Heroku [here](https://github.com/anjannair/Rufus-Discord-Bot/wiki/The-Heroku-Hosting)
 
-### STEP 1
-Head over to the [developers](discord.com/developers) and create an app.
-
-### STEP 2
-Once done add a good name and icon for your bot. The proceed to OAuth2 and scroll to `scopes` and select the `bot` option.
-Scroll further down and select the `permissions` your bot needs. (I prefer giving it the `Administrator` permission for easy purposes).
-
-### STEP 3 
-A link should be generated between `scopes` and `permissions`. Copy and paste it in your new browser. This link invites your bot to your guild.
-
-### STEP 4
-If you have git pre installed on your laptop just clone this repo using `git clone https://github.com/anjannair/Rufus-Discord-Bot.git`
-
-If you don't have git download the code from `https://github.com/anjannair/Rufus-Discord-Bot/archive/master.zip` and extract it. 
-
-## FOR HOSTING IT ON HEROKU CHECK OUT MY DETAILED WIKI [HERE](https://github.com/anjannair/Rufus-Discord-Bot/wiki/The-Heroku-Hosting)
+I have tried to make the Wiki page as detailed as possible. I hope you learn something new!
 
 
