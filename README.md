@@ -47,28 +47,6 @@ If you have git pre installed on your laptop just clone this repo using `git clo
 
 If you don't have git download the code from `https://github.com/anjannair/Rufus-Discord-Bot/archive/master.zip` and extract it. 
 
-### STEP 5
-Modify the code to your suiting.
+## FOR HOSTING IT ON HEROKU CHECK OUT MY DETAILED WIKI [HERE](https://github.com/anjannair/Rufus-Discord-Bot/wiki/The-Heroku-Hosting)
 
-After modifying it create your repo and upload the code there.
 
-**Important** : If you intend to change the index.js file to anything else like for example bot.js then change the name of the file in the *Procfile* file from `Worker: node index.js` to `Worker: node bot.js`
-
-### STEP 6
-
-After modifying the code, create an app on Heroku and link your github repo (private or public anything is fine) to it.
-
-Head over to app settings > Config Vars > Reveal config vars and input your KEY name as TOKEN and VALUE as the discord bot token
-
-Do the same for the other API's
-
-Hit **Deploy branch** 
-
-Note: Automatic Deployment is totally optional. You will have to manually deploy the branch everytime your code changes on github if automatic deployment is disabled.
-
-### STEP 7
-Go to resources and switch off the web dyno and turn on your worker dyno. Your bot is good to go! 
-
-After deploying the bot there may be issues in finding the dynos in the resources page. Just refresh it and its there!!
-
-If incase your bot fails to show up or you encounter any error check the app logs
