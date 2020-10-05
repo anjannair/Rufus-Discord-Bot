@@ -22,5 +22,5 @@ if (msg) msg.delete({ timeout: 10000 });
 };
 module.exports.help = {
 	name: "prune",
-    aliases: ['clear','clean','remove']
+    aliases: ['clear','clean']
 };
