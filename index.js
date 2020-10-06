@@ -83,4 +83,4 @@ new TicTacToe({
 }, bot);
 
 
-bot.login('NzYyNzYzNzI2NjU0NTM3NzM5.X3t5Ew.8m_T2nTxUyefOm_v-oyfaDtV0mY');
+bot.login(process.env.TOKEN);
