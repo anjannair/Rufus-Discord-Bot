@@ -6,7 +6,7 @@ const request = require("request");
 const config = require("./config.json");
 const TicTacToe = require('discord-tictactoe');
 const { fips } = require("crypto");
-const bot = new Discord.Client({ ws: { intents: Discord.Intents.ALL } });
+const bot = new Discord.Client({ ws: { intents: Discord.Intents.ALL } }); 
 bot.aliases = new Discord.Collection();
 bot.dsd = new Discord.Collection();
 bot.admin = new Discord.Collection();
@@ -22,7 +22,7 @@ bot.commands = new Discord.Collection();
 */
 module.exports = {
 	client: bot,
-}
+};
 
 // add events by using this format
 /* 
@@ -35,13 +35,13 @@ module.exports = {
 */
 
 fs.readdir('./events', (err, files) => {
-	if (err) return console.log(err)
+	if (err) return console.log(err);
 	let jsFiles = files.filter(file => file.split('.').pop() === 'js');
 	jsFiles.forEach(file => {
-		const prop = require(`./events/${file}`)
-		bot.on(prop.help.event, prop)
-	})
-})
+		const prop = require(`./events/${file}`);
+		bot.on(prop.help.event, prop);
+	});
+});
 
 
 //commands
@@ -65,6 +65,8 @@ fs.readdir('./commands/', (err, files) => {
 				console.log(`${singleFile} loaded`);
 				if (folder !== 'misc') {
 					bot[folder].set(props.help.name, props);
+				} else {
+					bot.commands.set(props.help.name, props);
 				}
 				props.help.aliases.forEach(alias => {
 					bot.aliases.set(alias, props.help.name);
@@ -72,7 +74,7 @@ fs.readdir('./commands/', (err, files) => {
 			});
 		});
 	});
-})
+});
 
 //from the package TicTackToe for the game tictactoe
 new TicTacToe({
@@ -81,4 +83,4 @@ new TicTacToe({
 }, bot);
 
 
-bot.login(process.env.TOKEN)
+bot.login('NzYyNzYzNzI2NjU0NTM3NzM5.X3t5Ew.8m_T2nTxUyefOm_v-oyfaDtV0mY');
