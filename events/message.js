@@ -1,0 +1,58 @@
+const config = require('../config.json');
+const index = require('../index');
+const bot = index.client;
+
+
+module.exports = async message => {
+	if (message.author.bot) return;
+	if (message.channel.type === "dm") return;
+
+	let prefix = config.prefix;
+	let args = message.content.slice(prefix.length).trim().split(' ');
+	let rope = args.shift().toLowerCase();
+	let fan;
+	let fan1;
+	let fan2;
+	let fan3;
+
+	if (!message.content.startsWith(prefix)) return;
+
+	//for dsd
+	if (bot.dsd.has(rope)) {
+		fan = bot.dsd.get(rope);
+	}
+	else {
+		fan = bot.dsd.get(bot.aliases.get(rope));
+	}
+	if (fan) fan.run(bot, message, args);
+
+	//for admin
+	if (bot.admin.has(rope)) {
+		fan1 = bot.admin.get(rope);
+	}
+	else {
+		fan1 = bot.admin.get(bot.aliases.get(rope));
+	}
+	if (fan1) fan1.run(bot, message, args);
+
+	//for newbie
+	if (bot.newbie.has(rope)) {
+		fan2 = bot.newbie.get(rope);
+	}
+	else {
+		fan2 = bot.newbie.get(bot.aliases.get(rope));
+	}
+	if (fan2) fan2.run(bot, message, args);
+
+	//for misc
+	if (bot.commands.has(rope)) {
+		fan3 = bot.commands.get(rope);
+	}
+	else {
+		fan3 = bot.commands.get(bot.aliases.get(rope));
+	}
+	if (fan3) fan3.run(bot, message, args);
+};
+module.exports.help = {
+	event: 'message'
+};
