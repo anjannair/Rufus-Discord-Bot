@@ -19,7 +19,7 @@ This is no way affliated to the company Rufus
 
 • Moderation - Ban, kick, warn, prune messages, mute and unmute all and muting and unmuting a user (same goes for deafening) features are included with appropriate permissions.
 
-• AutoModeration - Remove a list of bad words and dangerous links (nsfw included) and keep your server clean.
+• AutoModeration - Remove a list of bad words and dangerous links (nsfw included) along with captcha for new members(bots are ignored) and keep your server clean.
 
 • Games - Currently 8ball and TicTacToe are included.
 
@@ -32,5 +32,3 @@ This is no way affliated to the company Rufus
 ### You can find the step wise method to start creating your bot [over here](https://github.com/anjannair/Rufus-Discord-Bot/wiki) and on how to host it on Heroku [here](https://github.com/anjannair/Rufus-Discord-Bot/wiki/The-Heroku-Hosting)
 
 I have tried to make the Wiki page as detailed as possible. I hope you learn something new!
-
-
