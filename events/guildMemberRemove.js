@@ -7,4 +7,4 @@ module.exports = async member => {
 };
 module.exports.help = {
 	event: 'guildMemberRemove'
-}
+};

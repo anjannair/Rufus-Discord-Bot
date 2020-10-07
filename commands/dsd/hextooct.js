@@ -1,6 +1,7 @@
 const discord = require("discord.js");
 //the variables may confuse but its implementation is correct
 module.exports.run = async (bot, message, args) => {
+    if(!args) return message.reply("You cant leave this empty!");
     var zap = args;
     var yam = ""+zap;
     var xek = "";

@@ -1,6 +1,7 @@
 const discord = require("discord.js");
 //the variables may confuse but its implementation is correct
 module.exports.run = async (bot, message, args) => {
+    if(!args) return message.reply("You cant leave this empty!");
 	var ant = args;
 	if (isNaN(ant)) return message.reply("Please input a valid number");
 	var boy =""+ant;
