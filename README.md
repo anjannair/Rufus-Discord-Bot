@@ -1,10 +1,10 @@
 # Rufus
 
-Rufus is a dicord bot with the intention of replacing MEE6. This uses javascript as its programming language and has no SQL database to change the prefix.
+Rufus is a dicord bot with the intention of replacing MEE6. The intention is to make bots open sourced and so that more people build bots using Discords extensive API.
 
-The extensive guide to building a Javascript bot can be found [here](discordjs.guide).
+The extensive guide to building a Javascript bot can be found [here](https://www.discordjs.guide).
 
-This is no way affliated to the company Rufus
+This is no way affliated to the company Rufus.
 
 <div align="center">
 <img src="https://github.com/anjannair/Rufus-Discord-Bot/blob/master/images/Rufus.png" >
@@ -29,6 +29,13 @@ This is no way affliated to the company Rufus
 
 • Heroku integration - A free cloud hosting for small bots for few guilds (servers). The bot remains online 24/7.
 
-### You can find the step wise method to start creating your bot [over here](https://github.com/anjannair/Rufus-Discord-Bot/wiki) and on how to host it on Heroku [here](https://github.com/anjannair/Rufus-Discord-Bot/wiki/The-Heroku-Hosting)
+### HOW TO START BUILDING MY BOT? 
+Click [over here](https://github.com/anjannair/Rufus-Discord-Bot/wiki)  
+
+### HOW TO HOST MY BOT?
+Click [here](https://github.com/anjannair/Rufus-Discord-Bot/wiki/The-Heroku-Hosting)
+
+### HOW TO LINK BOT TO DATABASE
+Click [here](https://github.com/anjannair/Rufus-Discord-Bot/wiki/Using-A-Database-With-Heroku-And-More-(Memcache))
 
 I have tried to make the Wiki page as detailed as possible. I hope you learn something new!
