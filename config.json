@@ -2,6 +2,9 @@
 	"prefix": "*",
 
 	"activity": {
-		"game": "you play"
+		"game1": "you crawl out of the grave",
+		"game2": "Minecraft",
+		"game3": "Among Us",
+		"game4": "Valorant"
 	}
 }
