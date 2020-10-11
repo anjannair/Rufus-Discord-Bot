@@ -11,7 +11,8 @@ bot.aliases = new Discord.Collection();
 bot.dsd = new Discord.Collection();
 bot.admin = new Discord.Collection();
 bot.newbie = new Discord.Collection();
-bot.commands = new Discord.Collection();
+bot.misc = new Discord.Collection();
+bot.song = new Discord.Collection();
 
 //exports
 // add stuff you need from the main file into this object
@@ -62,12 +63,8 @@ fs.readdir('./commands/', (err, files) => {
 			jsFiles.forEach(singleFile => {
 
 				let props = require(`./commands/${folder}/${singleFile}`);
-				console.log(`${singleFile} loaded`);
-				if (folder !== 'misc') {
-					bot[folder].set(props.help.name, props);
-				} else {
-					bot.commands.set(props.help.name, props);
-				}
+				//console.log(`${singleFile} loaded`);
+				bot[folder].set(props.help.name, props);
 				props.help.aliases.forEach(alias => {
 					bot.aliases.set(alias, props.help.name);
 				});
