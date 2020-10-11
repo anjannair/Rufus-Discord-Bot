@@ -12,7 +12,6 @@ bot.dsd = new Discord.Collection();
 bot.admin = new Discord.Collection();
 bot.newbie = new Discord.Collection();
 bot.misc = new Discord.Collection();
-bot.song = new Discord.Collection();
 
 //exports
 // add stuff you need from the main file into this object

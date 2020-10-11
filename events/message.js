@@ -25,7 +25,6 @@ module.exports = async message => {
 	let fan1;
 	let fan2;
 	let fan3;
-	let fan4;
 
 	if (!message.content.startsWith(prefix)) return;
 
@@ -64,14 +63,6 @@ module.exports = async message => {
 		fan3 = bot.misc.get(bot.aliases.get(rope));
 	}
 	if (fan3) fan3.run(bot, message, args);
-	//for songs
-	if (bot.song.has(rope)) {
-		fan4 = bot.song.get(rope);
-	}
-	else{
-		fan4 = bot.song.get(bot.aliases.get(rope));
-	}
-	if(fan4) fan4.run(bot,message,args);
 }
 
 	else{
@@ -82,7 +73,6 @@ module.exports = async message => {
 	let fan1;
 	let fan2;
 	let fan3;
-	let fan4;
 
 	if (!message.content.startsWith(prefix)) return;
 
@@ -122,14 +112,6 @@ module.exports = async message => {
 	}
 	if (fan3) fan3.run(bot, message, args);
 
-	//for songs
-	if (bot.song.has(rope)) {
-		fan4 = bot.song.get(rope);
-	}
-	else{
-		fan4 = bot.song.get(bot.aliases.get(rope));
-	}
-	if(fan4) fan4.run(bot,message,args);
 }
 });
 };
