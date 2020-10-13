@@ -15,6 +15,7 @@ If you want to include captchas for specific servers only follow this code and r
 
 
 module.exports = async (member) => {
+    if(member.user.bot) return;
  if(member.guild.id == "GUILD ID"){//this was you can seperate the guild from the non captcha guild
     let welcomemrole1 = member.guild.roles.cache.find(role => role.name === `unverified`);
     if(welcomemrole1) member.roles.add(welcomemrole1);
