@@ -15,4 +15,4 @@ jobs:
     - name: PR Action
       uses: koushikmohan1996/action-pr-gifs@master
       with:
-        GITHUB_TOKEN: ${{ secrets.github-token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
