@@ -1,5 +1,11 @@
 const discord = require("discord.js");
 //the youtube video was meant for indians. You can accordingly change it your liking
+
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
 	const discordmesembed = new discord.MessageEmbed()
 		.setColor('#E7A700')

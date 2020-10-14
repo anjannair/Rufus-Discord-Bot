@@ -1,6 +1,10 @@
 const Discord = require("discord.js");
 const request = require("request");
-
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
 
 	/*The commented code can be uncommented if you want to

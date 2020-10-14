@@ -1,6 +1,12 @@
 const Discord = require("discord.js");
 const request = require("request");
 
+
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
 
 	let urls = ["https://meme-api.herokuapp.com/gimme/mildlyinteresting","https://meme-api.herokuapp.com/gimme/interestingasfuck","https://meme-api.herokuapp.com/gimme/damnthatsinteresting"];
