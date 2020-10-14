@@ -26,6 +26,9 @@ module.exports.run = async (bot, message, args) => {
     }
 };
 
+/***
+ * Exports the addrole command to the help object
+ */
 module.exports.help = {
     name: "addrole",
     aliases: ['ar']
