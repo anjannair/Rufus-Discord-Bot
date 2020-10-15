@@ -12,9 +12,11 @@ var a = message.id;
 
 if(!user) return message.reply("You did not mention anyone");
 
+//VARIABLE FOR REASON
 var reas = args.splice(1).join('');
 if(!reas) return message.reply("You need to give a reason");
 
+//EMBED FOR DISCORD MESSAGE EMBED
 var embs = new discord.MessageEmbed()
     .setColor('#FF0000') //hex color
     .setTitle(`WARNED`)
