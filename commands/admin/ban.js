@@ -1,6 +1,13 @@
 const discord = require("discord.js");
 
+
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
+	//save message id for later
 	var a = message.id;
 
 	if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply("You do not have the permission to do that!");
@@ -9,11 +16,14 @@ module.exports.run = async (bot, message, args) => {
 
 	if(!user) return message.reply("You did not mention anyone");
 
+
+	//reason for banning (comes from arguments)
 	var reas = args.splice(1).join(' ');
 	if(!reas) return message.reply("You need to give a reason");
 	if(user.hasPermission('ADMINISTRATOR')) return message.reply("Sadly you cannot kick an admin");
+	//creating a variable to store errors in
 	var jad = "";
-
+	//embed for discord message_embed
 	var embs = new discord.MessageEmbed()
 		.setColor('#E7A700')		//hex color
 		.setTitle(`BANNED`)
@@ -34,7 +44,9 @@ module.exports.run = async (bot, message, args) => {
 
 };
 
-
+/***
+ * Exports the ban command to the help object
+ */
 module.exports.help = {
 	name: "ban",
     aliases: []

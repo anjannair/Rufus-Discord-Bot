@@ -1,6 +1,11 @@
 const Discord = require("discord.js");
 const request = require("request");
 
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
 	let urls = ["http://numbersapi.com/random/year?json","http://numbersapi.com/random/trivia?json","http://numbersapi.com/random/date?json","http://numbersapi.com/random/math?json"];
 

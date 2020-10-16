@@ -1,5 +1,9 @@
 const discord = require("discord.js");
-
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
     var neb = args.join(' ');
     const ayy = bot.emojis.cache.get("756082462677008394");

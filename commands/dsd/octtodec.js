@@ -1,5 +1,10 @@
 const discord = require("discord.js");
 //the variables may confuse but its implementation is correct
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
 	if(!args) return message.reply("You cant leave this empty!");
 	var zap = args;

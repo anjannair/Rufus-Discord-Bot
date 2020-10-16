@@ -1,5 +1,9 @@
 const discord = require("discord.js");
-
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
 	if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("You do not have the permissions to do that");
 	

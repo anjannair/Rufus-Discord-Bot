@@ -1,7 +1,11 @@
 const discord = require("discord.js");
 const fetch = require('node-fetch');
 const querystring = require('querystring');
-
+/***
+* @param {Discord.client} bot the discord bot client.
+* @param {Discord.messsage} message the initial message sent by the user.
+* @param {array} args an array of arguments
+ */
 module.exports.run = async (bot, message, args) => {
 if (!args.length) return message.channel.send('You need to supply a search term!');
 
