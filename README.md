@@ -11,6 +11,13 @@ This is no way affliated to the company Rufus.
 <p>The Pacman inspired logo</p>
 </div>
 
+# Environment Variables
+```
+TOKEN = //YOUR DISCORD TOKEN
+
+TENOR = //YOUR TENOR TOKEN
+```
+
 # Features
 • Automeme feature - Post memes every one hour (time can be changed) from an array of subreddits at random. The API link in the array can be edited to add more subreddits.
 
