@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
   for (let memberi of channel.members){
     await memberi[1].voice.setDeaf(true);
   }
-  message.channel.send("Deafened all!").then((msg)=> {
+  message.channel.send("Deafened all!").then(async (msg)=> {
     //DELETE ALL MESSAGES WITH THE MESSAGE ID IN 3 SECONDS
 		await message.channel.messages.fetch(msg.id).then(msg => msg.delete({ timeout: 3000 }));
   });

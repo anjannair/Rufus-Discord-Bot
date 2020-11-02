@@ -4,6 +4,7 @@ const Canvas = require('canvas');
 const lineReader = require('line-reader');
 const request = require("request");
 const config = require("./config.json");
+require('dotenv').config();
 const TicTacToe = require('discord-tictactoe');
 const { fips } = require("crypto");
 const bot = new Discord.Client({ ws: { intents: Discord.Intents.ALL } }); 
