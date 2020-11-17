@@ -1,35 +1,44 @@
 const Discord = require("discord.js");
+const { Command } = require('discord.js-commando');
 
-
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-
-module.exports.run = async (bot, message, args) => {
-    //Save message ID for later in fetch
-    var a = message.id;
-    if (message.member.hasPermission('MANAGE_ROLES')) {
-        var mentionedRole = message.mentions.roles.first();
-        var roleMember = message.mentions.members.first();
-        message.channel.bulkDelete(1, true).catch(err => {
-            console.error(err);
+module.exports = class rufus extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'addrole',
+            aliases: ['ar'],
+            group: 'admin',
+            memberName: 'addrole',
+            description: 'Adds role for mentioned user',
+            guildOnly: true,
+            clientPermissions: ['MANAGE_ROLES'],
+            userPermissions: ['MANAGE_ROLES'],
+            args: [{
+                key: 'user',
+                prompt: 'Whom do you want to add role to?',
+                type: 'member',
+            },
+            {
+                key: 'role',
+                prompt: 'What role do you want to add?',
+                type: 'role',
+            }
+            ]
         });
-        if (!mentionedRole) return message.reply(`I am unable to find role: ${mentionedRole}`);
-        message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
-        roleMember.roles.add(mentionedRole).then(message.channel.send("Role successfully added.")).catch(err => {
-            message.channel.send("An error occured. This may happen when I dont have the appropriate permissions");
-        });
-    } else {
-        message.reply('You do not have permission to do this');
     }
-};
 
-/***
- * Exports the addrole command to the help object
- */
-module.exports.help = {
-    name: "addrole",
-    aliases: ['ar']
+    async run(message, { role, user }) {
+        var a = message.id;
+        let jad;
+        var mentionedRole = role;
+        var roleMember = user;
+        if (!mentionedRole) return message.reply(`I am unable to find role: ${mentionedRole}`);
+        roleMember.roles.add(mentionedRole).catch(err => {
+            jad = err;
+            message.channel.send("An error occured. This may happen when my heirachy is lower\nHandy Link: https://discordcaptcha.xyz/hc/doku.php?id=captchabot:role_hierarchy");
+        });
+        if (!jad) {
+            message.channel.send("Role successfully added.");
+        }
+        message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
+    }
 };

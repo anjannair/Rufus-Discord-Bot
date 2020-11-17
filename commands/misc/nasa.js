@@ -1,22 +1,31 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
+const { Command } = require('discord.js-commando');
 
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-module.exports.run = async (bot, message, args) => {
-	if(!args){
-        message.channel.send("Enter a valid term to search for!");
+module.exports = class rufus extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'nasa',
+            group: 'misc',
+            memberName: 'nasa',
+            description: 'Search the NASA website on Discord',
+            guildOnly: true,
+            args: [{
+                key: 'query',
+                prompt: 'What do you want to search?',
+                type: 'string',
+            }]
+        });
     }
-        let term = args.join(' ');
+
+    async run(message, { query }) {
+        let term = query;
         let response = await fetch(`https://images-api.nasa.gov/search?q=${term}`);
         let data = await response.json();
         if (!data.collection.items[0].data[0].description) {
-             let msg = await message.channel.send(`Couldn't find any results for ${term}`);
-             msg.delete({timeout: 10000});
-             return message.react('❌');
+            let msg = await message.channel.send(`Couldn't find any results for ${term}`);
+            msg.delete({ timeout: 10000 });
+            return message.react('❌');
         }
         let nasasearchembed = new Discord.MessageEmbed()
             .setColor('#00ffbb')
@@ -26,9 +35,5 @@ module.exports.run = async (bot, message, args) => {
             .setTimestamp();
         await message.channel.send(nasasearchembed);
         message.react('✔️');
-};
-
-module.exports.help = {
-	name: "nasa",
-    aliases: []
+    }
 };

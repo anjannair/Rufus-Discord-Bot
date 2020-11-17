@@ -1,13 +1,28 @@
 const discord = require("discord.js");
 const fetch = require("node-fetch");
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-module.exports.run = async (bot, message, args) => {
-    var query = args.join(' ');
-    fetch(`https://api.tenor.com/v1/random?q=${query}&key=`+process.env.TENOR)  //get from the Tenor website
+require('dotenv').config();
+const { Command } = require('discord.js-commando');
+
+module.exports = class rufus extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'gif',
+      group: 'misc',
+      memberName: 'gif',
+      description: 'Get GIFs from Tenor',
+      guildOnly: true,
+      args: [{
+        key: 'query',
+        prompt: 'Which GIF do you want?',
+        type: 'string',
+      }],
+      clientPermissions: ['ATTACH_FILES'],
+      userPermissions: ['ATTACH_FILES'],
+    });
+  }
+
+  async run(message, { query }) {
+    fetch(`https://api.tenor.com/v1/search?q=${query}&key=${process.env.TENOR}&contentfilter=low`)
       .then(res => res.json())
       .then(json => message.channel.send(json.results[0].url))
       .catch(e => {
@@ -15,9 +30,5 @@ module.exports.run = async (bot, message, args) => {
         // console.error(e);
         return;
       });
-};
-
-module.exports.help = {
-	name: "gif",
-  aliases: []
+  }
 };

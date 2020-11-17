@@ -1,24 +1,27 @@
 const discord = require("discord.js");
-//dev of the bot
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-module.exports.run = async (bot, message, args) => {
-	const devembed = new discord.MessageEmbed()
-		.setColor('#E7A700')
-		.setTitle('BOT DEVELOPER')
-		.setDescription(`
-			This bot has been developed by <@414992506665828364>
+const { Command } = require('discord.js-commando');
+
+module.exports = class rufus extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'dev',
+			group: 'misc',
+			memberName: 'dev',
+			description: 'Get to know the developer',
+			guildOnly: true,
+		});
+	}
+
+	async run(message) {
+		const devembed = new discord.MessageEmbed()
+			.setColor('#E7A700')
+			.setTitle('BOT DEVELOPER')
+			.setDescription(`
+			This bot has been developed by agentmurphy#6969
 	    	
 			If you have suggestions do ping him!
 
 			`);
-	message.channel.send(devembed);
-};
-
-module.exports.help = {
-	name: "dev",
-    aliases: ['developer']
+		message.channel.send(devembed);
+	}
 };

@@ -1,31 +1,35 @@
 const discord = require("discord.js");
-const request = require("request");
+const fetch = require("node-fetch");
+const { Command } = require('discord.js-commando');
 
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
+module.exports = class rufus extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'xkcd',
+            group: 'misc',
+            memberName: 'xkcd',
+            aliases: ['comic', 'comics'],
+            description: 'Random XKCD comics!',
+            guildOnly: true,
+            clientPermissions: ['ATTACH_FILES'],
+            userPermissions: ['ATTACH_FILES'],
+        });
+    }
 
-module.exports.run = async (bot, message, args) => {
-    const a = Math.floor(Math.random()*2350);
-    const url = "https://xkcd.com/"+a+"/info.0.json";
-    return request(url, (err, response, body) => {
-        if (err) throw(err);
-			var data = JSON.parse(body);
+    async run(message) {
+        const a = Math.floor(Math.random() * 2350);
+        const url = "https://xkcd.com/" + a + "/info.0.json";
+
+        let datafetcher = url;
+        let response = await fetch(datafetcher);
+        let data = await response.json();
 
         let xkcd = new discord.MessageEmbed()
             .setTitle(data.title)
             .setImage(data.img)
-            .setFooter("Alt: "+data.alt);
-        message.channel.send(xkcd).catch(console.err);
-
-    });
-    
-	
-};
-
-module.exports.help = {
-	name: "xkcd",
-    aliases: ['comic','comics','xkcds']
+            .setFooter("Alt: " + data.alt);
+        message.channel.send(xkcd).catch(err => {
+            console.log(err);
+        });
+    }
 };

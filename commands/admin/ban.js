@@ -1,53 +1,51 @@
 const discord = require("discord.js");
+const { Command } = require('discord.js-commando');
 
-
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-module.exports.run = async (bot, message, args) => {
-	//save message id for later
-	var a = message.id;
-
-	if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply("You do not have the permission to do that!");
-
-	var user = message.mentions.users.first();
-
-	if(!user) return message.reply("You did not mention anyone");
-
-
-	//reason for banning (comes from arguments)
-	var reas = args.splice(1).join(' ');
-	if(!reas) return message.reply("You need to give a reason");
-	if(user.hasPermission('ADMINISTRATOR')) return message.reply("Sadly you cannot kick an admin");
-	//creating a variable to store errors in
-	var jad = "";
-	//embed for discord message_embed
-	var embs = new discord.MessageEmbed()
-		.setColor('#E7A700')		//hex color
-		.setTitle(`BANNED`)
-		.addField('User: ',user,true)
-		.addField('By: ',message.author,true)
-		.addField('Reason: ',reas);
-	message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
-	await user.send(`You were banned from ${user.guild} for: ${reas}`);
-	await message.guild.members.ban(user).catch(err =>{
-		jad = err;
-	});
-	if(!jad){
-		return message.channel.send(embs);
-	}
-	else{
-		return message.channel.send("An error occured. This happens when I don't have necessary permissions!!\n\nTip: Bots have complicated permissions. Kick them manually.");
+module.exports = class rufus extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'ban',
+			group: 'admin',
+			memberName: 'ban',
+			description: 'Bans a user from the server',
+			guildOnly: true,
+			clientPermissions: ['BAN_MEMBERS'],
+			userPermissions: ['BAN_MEMBERS'],
+			args: [{
+				key: 'user',
+				prompt: 'Whom do you want to ban?',
+				type: 'member',
+			},
+			{
+				key: 'reason',
+				prompt: 'What is the reason?',
+				type: 'string',
+			}
+			]
+		});
 	}
 
-};
+	async run(message, { reason, user }) {
+		var a = message.id;
+		var reas = reason;
+		let jad;
 
-/***
- * Exports the ban command to the help object
- */
-module.exports.help = {
-	name: "ban",
-    aliases: []
+		var embs = new discord.MessageEmbed()
+			.setColor('#E7A700')
+			.setTitle(`BANNED`)
+			.addField('User: ', user, true)
+			.addField('By: ', message.author, true)
+			.addField('Reason: ', reas);
+		message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
+		await user.send(`You were banned from ${user.guild} for: ${reas}`);
+		await user.ban({ reason: reason }).catch(err => {
+			jad = err;
+		});
+		if (!jad) {
+			return message.channel.send(embs);
+		}
+		else {
+			return message.channel.send("An error occured. This may happen when my heirachy is lower\nHandy Link: https://discordcaptcha.xyz/hc/doku.php?id=captchabot:role_hierarchy");
+		}
+	}
 };

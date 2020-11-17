@@ -1,35 +1,43 @@
 const discord = require("discord.js");
 const fetch = require('node-fetch');
 const querystring = require('querystring');
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-module.exports.run = async (bot, message, args) => {
-if (!args.length) return message.channel.send('You need to supply a search term!');
+const { Command } = require('discord.js-commando');
 
-const query = querystring.stringify({ term: args.join(' ') });
+module.exports = class rufus extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'urban',
+			group: 'misc',
+			memberName: 'urban',
+			description: 'Search the urban dictionary',
+			guildOnly: true,
+			args: [{
+				key: 'search',
+				prompt: 'What would you like to search?',
+				type: 'string',
+			}]
+		});
+	}
 
-const { list } = await fetch(`https://api.urbandictionary.com/v0/define?${query}`).then(response => response.json());
+	async run(message, { search }) {
 
-if (!list.length) return message.channel.send(`No results found for **${args.join(' ')}**.`);
+		const query = querystring.stringify({ term: search });
 
-const [answer] = list;
+		const { list } = await fetch(`https://api.urbandictionary.com/v0/define?${query}`).then(response => response.json());
 
-const embed = new discord.MessageEmbed()
-	.setColor('#EFFF00')
-	.setTitle(answer.word)
-	.setURL(answer.permalink)
-	.addFields(
-		{ name: 'Definition', value: answer.definition },
-		{ name: 'Example', value: answer.example },
-		{ name: 'Rating', value: `${answer.thumbs_up} thumbs up. ${answer.thumbs_down} thumbs down.` },
-		);
-message.channel.send(embed);
-};
+		if (!list.length) return message.channel.send(`No results found for that.`);
 
-module.exports.help = {
-	name: "urban",
-    aliases: ['urbandict']
+		const [answer] = list;
+
+		const embed = new discord.MessageEmbed()
+			.setColor('#EFFF00')
+			.setTitle(answer.word)
+			.setURL(answer.permalink)
+			.addFields(
+				{ name: 'Definition', value: answer.definition },
+				{ name: 'Example', value: answer.example },
+				{ name: 'Rating', value: `${answer.thumbs_up} thumbs up. ${answer.thumbs_down} thumbs down.` },
+			);
+		message.channel.send(embed);
+	}
 };

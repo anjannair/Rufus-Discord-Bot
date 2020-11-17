@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 const lineReader = require('line-reader');
+const config = require('../config.json');
+const index = require('../index');
+const bot = index.client;
 module.exports = message => {
 	var j = 0;
 	function isValidURL(string) {

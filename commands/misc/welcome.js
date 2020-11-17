@@ -1,13 +1,20 @@
 const discord = require("discord.js");
+const { Command } = require('discord.js-commando');
 
-//welcome was the first command I tried so I let it stay as a memory
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-module.exports.run = async (bot, message, args) => {
-	return message.channel.send(`
+module.exports = class rufus extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'welcome',
+			group: 'misc',
+			memberName: 'welcome',
+			description: 'Gives you a welcome message for no reason',
+			guildOnly: true,
+		});
+	}
+
+	async run(message) {
+
+		return message.reply(`
 		Welcome to the ${message.guild.name} server
 
 		Total number of members are: ${message.guild.memberCount}
@@ -15,9 +22,5 @@ module.exports.run = async (bot, message, args) => {
 		Server region: ${message.guild.region}
 		
 		`);
-};
-
-module.exports.help = {
-	name: "welcome",
-    aliases: ['hello']
+	}
 };

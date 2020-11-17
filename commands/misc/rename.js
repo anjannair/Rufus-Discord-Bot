@@ -1,22 +1,30 @@
 const discord = require("discord.js");
+const { Command } = require('discord.js-commando');
 
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
+module.exports = class rufus extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'rename',
+      group: 'misc',
+      memberName: 'rename',
+      aliases: ['setnick', 'nick'],
+      description: 'Rename yourself using this command',
+      guildOnly: true,
+      clientPermissions: ['CHANGE_NICKNAME', 'MANAGE_NICKNAMES'],
+      userPermissions: ['CHANGE_NICKNAME'],
+      args: [{
+        key: 'nickname',
+        prompt: 'What would you like to name yourself?',
+        type: 'string',
+      }]
+    });
+  }
 
-module.exports.run = async (bot, message, args) => {
-  var a = message.id;
-  var nickname = args.join(' ');
-  if(!message.member.hasPermission('CHANGE_NICKNAME')) return message.reply("You do not have the permission to do that!");
-  message.member.setNickname(nickname).catch(err =>{
-    return message.reply("Sorry cannot do that at this time");
-  }); 
-  await message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
-};
-
-module.exports.help = {
-  name: "rename",
-  aliases: ['setnick','nick']
+  async run(message,{nickname}) {
+    var a = message.id;
+    message.member.setNickname(nickname).catch(err => {
+      return message.reply("Sorry cannot do that at this time");
+    });
+    await message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
+  }
 };

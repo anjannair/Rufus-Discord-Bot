@@ -1,75 +1,74 @@
+/* eslint-disable no-useless-escape */
+const { CommandoClient } = require('discord.js-commando');
 const fs = require("fs");
-const Discord = require('discord.js');
+const Discord = require("discord.js");
+const fetch = require('node-fetch');
 const Canvas = require('canvas');
-const lineReader = require('line-reader');
-const request = require("request");
-const config = require("./config.json");
-require('dotenv').config();
+const path = require('path');
+const request = require('request');
 const TicTacToe = require('discord-tictactoe');
-const { fips } = require("crypto");
-const bot = new Discord.Client({ ws: { intents: Discord.Intents.ALL } }); 
-bot.aliases = new Discord.Collection();
-bot.dsd = new Discord.Collection();
-bot.admin = new Discord.Collection();
-bot.newbie = new Discord.Collection();
-bot.misc = new Discord.Collection();
+const lineReader = require('line-reader');
+require('dotenv').config();
+const config = require(path.resolve(__dirname, "config.json"));
 
-//exports
-// add stuff you need from the main file into this object
-// then use 
-/*
- const index = require('./index');
- const something = index.something;
-*/
-module.exports = {
-	client: bot,
-};
+const client = new CommandoClient({
+	commandPrefix: config.prefix,
+	owner: process.env.OWNERS.split(','),	//if you're helping in developing this add your ID
+	disableMentions: 'everyone',
+	ws: { intents: Discord.Intents.ALL }
+});
 
-// add events by using this format
-/* 
-	module.exports = parameter => {
-		code
-	}
-	module.exports.help = {
-		event: 'EVENTNAME
-	}
-*/
+client.registry
+	.registerDefaultTypes()
+	.registerGroups([ //Classifies each command and sorts it
+		['admin', 'All the tools for the server'],	//for all the tools
+		['dsd', 'All conversions for Digital System Designs'],
+		['misc', 'Miscellaneous games and stuff'],
+		['newbie', 'All information for newbies'],
+	])
+	.registerDefaultGroups()
+	.registerDefaultCommands({
+		ping: false,
+		prefix: false,
+		commandState: false,
+		unknownCommand: false,
+	})
+	.registerCommandsIn(path.join(__dirname, 'commands'));
 
+//on ready
+client.once('ready', () => {
+	console.log(`${client.user.username} is ready for action!`);
+	var interval = setInterval(function () {
+		var p = Math.floor(Math.random() * 6);
+		if (p == 1) {
+			client.user.setActivity(`${client.guilds.cache.size} servers`, { type: 'WATCHING' });
+		}
+		if (p == 2) {
+			client.user.setActivity(`${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} members`, { type: 'WATCHING' });
+		}
+		if (p == 3) {
+			client.user.setActivity(config.activity.game1, { type: 'WATCHING' });
+		}
+		if (p == 4) {
+			client.user.setActivity(config.activity.game2, { type: 'PLAYING' });
+		}
+		if (p == 5) {
+			client.user.setActivity(config.activity.game3, { type: 'PLAYING' });
+		}
+		if (p == 6) {
+			client.user.setActivity(config.activity.game4, { type: 'PLAYING' });
+		}
+	}, 1 * 40000);
+});
+
+
+//parsing events
 fs.readdir('./events', (err, files) => {
 	if (err) return console.log(err);
 	let jsFiles = files.filter(file => file.split('.').pop() === 'js');
 	jsFiles.forEach(file => {
 		const prop = require(`./events/${file}`);
-		bot.on(prop.help.event, prop);
-	});
-});
-
-
-//commands
-//add commands by either adding them into the folders, or create a new folder.
-//When adding new folders, the folders must match up with the collections unless there is no collection in which you have to edit line number 66 and add that folder
-
-fs.readdir('./commands/', (err, files) => {
-	const folders = files.filter(item => !item.includes('.'));
-	folders.forEach(folder => {
-		fs.readdir(`./commands/${folder}`, (er, f) => {
-			const jsFiles = f.filter(file => file.split('.').pop() === 'js');
-			if (jsFiles.length <= 0) {
-				console.log(`${folder} conversions couldn't load`);
-				return;
-			}
-
-			console.log(`loading ${jsFiles.length} ${folder} commands...`);
-			jsFiles.forEach(singleFile => {
-
-				let props = require(`./commands/${folder}/${singleFile}`);
-				//console.log(`${singleFile} loaded`);
-				bot[folder].set(props.help.name, props);
-				props.help.aliases.forEach(alias => {
-					bot.aliases.set(alias, props.help.name);
-				});
-			});
-		});
+		client.on(prop.help.event, prop);
 	});
 });
 
@@ -77,7 +76,8 @@ fs.readdir('./commands/', (err, files) => {
 new TicTacToe({
 	language: 'en',
 	command: '*ttt'
-}, bot);
+}, client);
 
+client.on('error', console.error);
 
-bot.login(process.env.TOKEN);
+client.login(process.env.TOKEN);

