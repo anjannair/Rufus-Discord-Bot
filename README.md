@@ -6,6 +6,8 @@ The extensive guide to building a Javascript bot can be found [here](https://www
 
 This is no way affliated to the company Rufus.
 
+**THE COMMANDO VERSION OF THIS CODE IS IN [THIS](https://github.com/anjannair/Rufus-Discord-Bot/tree/commando) BRANCH**
+
 <div align="center">
 <img src="https://github.com/anjannair/Rufus-Discord-Bot/blob/master/images/Rufus.png" >
 <p>The Pacman inspired logo</p>
@@ -24,6 +26,8 @@ MEMCACHEDCLOUD_SERVERS = //MEMCACHE SERVER TOKEN
 MEMCACHEDCLOUD_USERNAME = //MEMCACHE USERNAME TOKEN
 
 COC = //CLASH OF CLANS API KEY
+
+TLDR = //YOUR SMMRY API
 ```
 
 # Features
@@ -40,7 +44,7 @@ COC = //CLASH OF CLANS API KEY
 
 • QR code generator for links.
 
-• API integrations - Currently ReviewMeta API, Reddit meme API, Urban Dictionary API, Number API, CatFact API, Dogpile API, NASA API and Tenor API are being used.
+• API integrations - Currently ReviewMeta API, Reddit meme API, Urban Dictionary API, Number API, CatFact API, Dogpile API, NASA API, SMMRY API and Tenor API are being used.
 
 • Heroku integration - A free cloud hosting for small bots for few guilds (servers). The bot remains online 24/7.
 
