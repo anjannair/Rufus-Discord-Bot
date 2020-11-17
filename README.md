@@ -1,8 +1,8 @@
 # Rufus
 
-Rufus is a dicord bot with the intention of replacing MEE6. The intention is to make bots open sourced and so that more people build bots using Discords extensive API.
+Rufus is a dicord bot with the intention of replacing MEE6. The intention is to make bots open sourced and so that more people build bots using Discords extensive API and Discord Commando.
 
-The extensive guide to building a Javascript bot can be found [here](https://www.discordjs.guide).
+The extensive guide to building a Javascript bot can be found [here](https://discordjs.guide/commando/).
 
 This is no way affliated to the company Rufus.
 
@@ -24,6 +24,10 @@ MEMCACHEDCLOUD_SERVERS = //MEMCACHE SERVER TOKEN
 MEMCACHEDCLOUD_USERNAME = //MEMCACHE USERNAME TOKEN
 
 COC = //CLASH OF CLANS API KEY
+
+OWNERS = //THW OWNERS OF THE BOT (IF MORE THAN ONE SEPERATE WITH COMMA)
+
+TLDR = //YOUR SMMRY API
 ```
 
 # Features
@@ -40,7 +44,7 @@ COC = //CLASH OF CLANS API KEY
 
 • QR code generator for links.
 
-• API integrations - Currently ReviewMeta API, Reddit meme API, Urban Dictionary API, Number API, CatFact API, Dogpile API, NASA API and Tenor API are being used.
+• API integrations - Currently ReviewMeta API, Reddit meme API, Urban Dictionary API, Number API, CatFact API, Dogpile API, NASA API, SMMRY API and Tenor API are being used.
 
 • Heroku integration - A free cloud hosting for small bots for few guilds (servers). The bot remains online 24/7.
 
