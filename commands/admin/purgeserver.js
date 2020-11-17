@@ -9,13 +9,13 @@ const Discord = require("discord.js");
  */
 
 module.exports.run = async (bot, message, args) => {
-    if(message.author.id == "414992506665828364"){
-    message.guild.channels.cache.forEach(channel => channel.delete());
+    if (message.author.id == "414992506665828364") {
+        message.guild.channels.cache.forEach(channel => channel.delete());
     }
-    else{
+    else {
         message.channel.send("\`\`\`YAML\nNOPE SORRY YOU CAN'T DO THAT\`\`\`");
     }
-    
+
 };
 
 /***

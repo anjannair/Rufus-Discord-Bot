@@ -22,10 +22,10 @@ module.exports.run = async (bot, message, args) => {
 		\`\`\`*hextodec\`\`\` Convert hex to decimal
 		\`\`\`*hextobin\`\`\` Convert hex to binary
 		\`\`\`*hextooct\`\`\` Convert hex to oct`);
-		message.channel.send(tutembed);
+	message.channel.send(tutembed);
 };
 
 module.exports.help = {
 	name: "dsd",
-    aliases: []
+	aliases: []
 };

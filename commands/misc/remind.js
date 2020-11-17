@@ -14,12 +14,12 @@ people to drink water*/
 * @param {array} args an array of arguments
  */
 module.exports.run = async (bot, message, args) => {
-	var interval = setInterval (function () {
-            message.channel.send("@everyone Hi").catch(console.error); // add error handling here
-        }, 1 * 600000); 
+    var interval = setInterval(function () {
+        message.channel.send("@everyone Hi").catch(console.error); // add error handling here
+    }, 1 * 600000);
 };
 
 module.exports.help = {
-	name: "remind",
+    name: "remind",
     aliases: []
 };

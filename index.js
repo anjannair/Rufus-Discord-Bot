@@ -7,7 +7,7 @@ const config = require("./config.json");
 require('dotenv').config();
 const TicTacToe = require('discord-tictactoe');
 const { fips } = require("crypto");
-const bot = new Discord.Client({ ws: { intents: Discord.Intents.ALL } }); 
+const bot = new Discord.Client({ ws: { intents: Discord.Intents.ALL } });
 bot.aliases = new Discord.Collection();
 bot.dsd = new Discord.Collection();
 bot.admin = new Discord.Collection();

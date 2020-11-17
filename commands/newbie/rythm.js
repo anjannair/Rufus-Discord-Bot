@@ -42,5 +42,5 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
 	name: "rythm",
-    aliases: ['rythmbot']
+	aliases: ['rythmbot']
 };

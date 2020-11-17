@@ -5,8 +5,8 @@ const discord = require("discord.js");
 * @param {array} args an array of arguments
  */
 module.exports.run = async (bot, message, args) => {
-	
-		const tutembed = new discord.MessageEmbed()
+
+	const tutembed = new discord.MessageEmbed()
 		.setColor('#E7A700')
 		.setTitle('COMMAND PALETTE')
 		.setDescription(`
@@ -20,11 +20,11 @@ module.exports.run = async (bot, message, args) => {
 
 			For all commands visit http://anjancodes.me/rufusbot/commands.html`);
 
-		message.channel.send(tutembed);
-	
+	message.channel.send(tutembed);
+
 };
 
 module.exports.help = {
 	name: "help",
-    aliases: ['tutorial']
+	aliases: ['tutorial']
 };

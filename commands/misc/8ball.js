@@ -11,10 +11,10 @@ const responses = [
 * @param {array} args an array of arguments
  */
 module.exports.run = async (bot, message, args) => {
-var ques = args.splice(1).join('');
-  if(!ques) return message.reply("This is 8ball. You need to ask a question.");
+  var ques = args.splice(1).join('');
+  if (!ques) return message.reply("This is 8ball. You need to ask a question.");
 
-  const number = Math.floor(Math.random()*responses.length);
+  const number = Math.floor(Math.random() * responses.length);
   message.channel.send(responses[number]);
 };
 

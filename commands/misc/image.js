@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
             "User-Agent": "Chrome"
         }
     };
-	request(options, function(error, response, responseBody) {
+    request(options, function (error, response, responseBody) {
         if (error) {
             // handle error
             return;
@@ -39,18 +39,18 @@ module.exports.run = async (bot, message, args) => {
 
         // Send result
         var size = urls.length;
-        if(size>5){
-        var end = Math.floor(Math.random() * 5);
-        message.channel.send( urls[end] );
+        if (size > 5) {
+            var end = Math.floor(Math.random() * 5);
+            message.channel.send(urls[end]);
         }
-        else     {
+        else {
             var end2 = Math.floor(Math.random() * 2);
-            message.channel.send ( urls[end2] );
+            message.channel.send(urls[end2]);
         }
     });
 };
 
 module.exports.help = {
-	name: "img",
+    name: "img",
     aliases: ['image']
 };

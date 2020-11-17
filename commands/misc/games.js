@@ -13,10 +13,10 @@ module.exports.run = async (bot, message, args) => {
 		The default prefix for this bot is * 
 		\`\`\`*8ball <question>\`\`\` Ask 8ball your questions!
 		\`\`\`*ttt\`\`\` Play tictactoe with the bot or with friends by tagging them! If you win against the bot you have grand prize waiting!`);	//this is in the index.js file
-		message.channel.send(tutembed);
+	message.channel.send(tutembed);
 };
 
 module.exports.help = {
 	name: "games",
-    aliases: ['fun']
+	aliases: ['fun']
 };

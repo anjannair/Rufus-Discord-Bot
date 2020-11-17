@@ -35,10 +35,10 @@ module.exports.run = async (bot, message, args) => {
 		.setImage('https//dankmemer.lol/40326fed0d1bc75a2688535e70dd31be.png');
 
 	message.channel.send(dankbotembed);
-	
+
 };
 
 module.exports.help = {
-	name : "dankbot",
-    aliases: ['dankmemer']
+	name: "dankbot",
+	aliases: ['dankmemer']
 };
