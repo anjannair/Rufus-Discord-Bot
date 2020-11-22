@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const request = require("request");
+const fetch = require('node-fetch');
 const { Command } = require('discord.js-commando');
 
 module.exports = class rufus extends Command {
@@ -21,9 +21,9 @@ module.exports = class rufus extends Command {
 		let urls = ["https://meme-api.herokuapp.com/gimme/dankmemes", "https://meme-api.herokuapp.com/gimme/wholesomememes", "https://meme-api.herokuapp.com/gimme/memes"];
 
 		let subreddit = urls[Math.floor(Math.random() * urls.length)];
-		return request(subreddit, (err, response, body) => {
-			if (err) throw (err);
-			var data = JSON.parse(body);
+		let datafetcher = subreddit;
+        let response = await fetch(datafetcher);
+        let data = await response.json();
 
 			let meme = new Discord.MessageEmbed()
 				.setColor('#E7A700')
@@ -37,7 +37,6 @@ module.exports = class rufus extends Command {
 			.addField('Post link', data.postLink)
 	
 			message.channel.send(postLink);*/
-		});
 		// }, 1 * 3600000);
 	}
 };

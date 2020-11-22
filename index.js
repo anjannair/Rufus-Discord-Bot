@@ -25,6 +25,7 @@ client.registry
 		['dsd', 'All conversions for Digital System Designs'],
 		['misc', 'Miscellaneous games and stuff'],
 		['newbie', 'All information for newbies'],
+		['nsfw', 'Well 🤐']
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands({
