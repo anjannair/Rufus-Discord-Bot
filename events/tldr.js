@@ -18,7 +18,9 @@ module.exports = async message => {
 			console.log("error");
 			return;
 		});
-		let data = await response.json();
+		let data = await response.json().catch(err=>{
+			return;
+		});
 		if (!data) return;
 		if (data.sm_api_error) return;
 		let summary = data.sm_api_content;
