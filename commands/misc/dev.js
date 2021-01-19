@@ -16,12 +16,7 @@ module.exports = class rufus extends Command {
 		const devembed = new discord.MessageEmbed()
 			.setColor('#E7A700')
 			.setTitle('BOT DEVELOPER')
-			.setDescription(`
-			This bot has been developed by agentmurphy#6969
-	    	
-			If you have suggestions do ping him!
-
-			`);
+			.setDescription(`This bot has been developed by agentmurphy#6969\n\nThe bot is open-source and the framework can be found [here](https://github.com/anjannair/Rufus-Discord-Bot/tree/commando)`);
 		message.channel.send(devembed);
 	}
 };

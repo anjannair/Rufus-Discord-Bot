@@ -1,12 +1,6 @@
 module.exports = async member => {
 	if (member.user.bot) return;
-
-	if (member.guild.name.toLowerCase() == 'ace extc 1') {
-		var channel = member.guild.channels.cache.find(ch => ch.name === '░°new-user°░👋');
-	}
-	else {
-		var channel = member.guild.channels.cache.find(ch => ch.name === 'welcome');
-	}
+	var channel = member.guild.channels.cache.find(ch => ch.name === 'welcome');
 	if (!channel) return;
 
 

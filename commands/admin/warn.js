@@ -17,26 +17,25 @@ module.exports = class rufus extends Command {
         type: 'member',
       },
       {
-        key:'reason',
-        prompt:'What is the reason of the warn?',
-        type:'string',
+        key: 'reason',
+        prompt: 'What is the reason of the warn?',
+        type: 'string',
       }
-    ]
+      ]
     });
   }
 
-  async run(message,{user,reason}) {
+  async run(message, { user, reason }) {
     var a = message.id;
-    
+    if (user.hasPermission('ADMINISTRATOR')) return message.reply("Bruh you are warning an admin! Get a life...");
     var reas = reason;
+
     var embs = new discord.MessageEmbed()
-        .setColor('#FF0000')
-        .setTitle(`WARNED`)
-        .addField('User: ',user,true)
-        .addField('By: ',message.author,true)
-        .addField('Reason: ',reas);
-      
-      message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
-      message.channel.send(embs);
+      .setColor('#FF0000')
+      .setFooter(`${message.author.tag} warned ${user.user.tag}\n\nReason: ${reas}`, user.user.avatarURL({ dynamic: true }));
+    user.send(`__**You have been warned on ${message.guild.name}**__\n\nReason: ${reas}`);
+
+    message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
+    message.channel.send(embs);
   }
 };

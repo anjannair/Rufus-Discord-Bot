@@ -32,7 +32,7 @@ module.exports = class rufus extends Command {
         var mentionedRole = role;
         var roleMember = user;
         if (!mentionedRole) return message.reply(`I am unable to find role: ${mentionedRole}`);
-        roleMember.roles.add(mentionedRole).catch(err => {
+        await roleMember.roles.add(mentionedRole).catch(err => {
             jad = err;
             message.channel.send("An error occured. This may happen when my heirachy is lower\nHandy Link: https://discordcaptcha.xyz/hc/doku.php?id=captchabot:role_hierarchy");
         });

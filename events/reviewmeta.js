@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 const index = require('../index');
 const bot = index.client;
-const request = require('request');
+const fetch = require('node-fetch');
 module.exports = async message => {
 	if (message.content.startsWith("https://www.amazon.in")) {
 		var code = null;
@@ -20,21 +20,24 @@ module.exports = async message => {
 
 		if (!code) return message.channel.send("Are you sure that is a product?");
 		var url = `https://reviewmeta.com/api/amazon-in/${code}`;
-		return request(url, (err, response, body) => {
-			if (err) throw (err);
-			var data = JSON.parse(body);
-			const embed = new Discord.MessageEmbed()
-				.setColor('#EFFF00')
-				.setTitle(data.title)
-				.setURL(data.href)
-				.setImage(data.image)
-				.addFields(
-					{ name: 'ReviewMeta Rating', value: data.rating }
-				)
-				.setFooter('\n\nSometimes the rating may not load due to caching issues. Just click on the link to get the review.');
+		let datafetcher = url;
+		let response = await fetch(datafetcher);
+		let data = await response.json();
+		let rating = "Could't fetch..click the title to fetch";
+		if(data.rating){
+			rating = data.rating;
+		}
+		const embed = new Discord.MessageEmbed()
+			.setColor('#EFFF00')
+			.setTitle(`ReviewMeta Link`)
+			.setURL(data.href)
+			.setImage(data.image)
+			.addFields(
+				{ name: 'ReviewMeta Rating', value: rating }
+			)
+			.setFooter('\n\nSometimes the rating may not load due to caching issues. Just click on the link to get the review.');
 
-			message.channel.send(embed).catch(console.error);
-		});
+		message.channel.send(embed).catch(console.error);
 	}
 };
 
