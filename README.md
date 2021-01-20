@@ -1,5 +1,7 @@
 # Rufus
 
+# THIS BRANCH IS NO LONGER MAINTAINED AND THE UPDATED BRANCH CAN BE FOUND ON THE OTHER BRANCH (COMMANDO VERSION)
+
 Rufus is a dicord bot with the intention of replacing MEE6. The intention is to make bots open sourced and so that more people build bots using Discords extensive API.
 
 The extensive guide to building a Javascript bot can be found [here](https://www.discordjs.guide).
