@@ -14,7 +14,7 @@
     "discord-tictactoe": "^2.0.7",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
-    "eslint": "^7.13.0",
+    "eslint": "^7.19.0",
     "line-reader": "^0.4.0",
     "memjs": "^1.2.2",
     "node-fetch": "^2.6.1",
