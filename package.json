@@ -18,7 +18,7 @@
     "line-reader": "^0.4.0",
     "memjs": "^1.2.2",
     "node-fetch": "^2.6.1",
-    "node-superfetch": "^0.1.10",
+    "node-superfetch": "^0.1.11",
     "node-virustotal": "^3.32.0",
     "request": "^2.88.2"
   }
