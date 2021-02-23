@@ -15,7 +15,7 @@ module.exports = class rufus extends Command {
 			userPermissions: ['KICK_MEMBERS'],
 			args: [{
 				key: 'user',
-				prompt: 'Whom do you want to ban?',
+				prompt: 'Whom do you want to kick?',
 				type: 'member',
 			},
 			{
@@ -31,6 +31,8 @@ module.exports = class rufus extends Command {
 		var a = message.id;
 
 		var useri = user;
+		if(message.member.roles.highest.comparePositionTo(user.roles.highest) < 1) return message.reply("You cannot use the command on a role higher or equal to yours!");
+
 
 		let jad;
 		var embs = new discord.MessageEmbed()
@@ -40,9 +42,11 @@ module.exports = class rufus extends Command {
 			.setColor('#E7A700')
 			.setFooter(`You were kicked from ${message.guild.name} for reason: ${reason}`, `${message.author.avatarURL({ dynamic: true })}`);
 		if (!useri.user.bot) {
-			await useri.send(embs1);
+			await useri.send(embs1).catch(err => {
+				return;
+			});
 		}
-		await useri.kick(reason+` , By: ${message.author.tag}`).catch(err => {
+		await useri.kick(reason + ` , By: ${message.author.tag}`).catch(err => {
 			jad = err;
 		});
 		await message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));

@@ -18,20 +18,22 @@ module.exports = async message => {
 			console.log("error");
 			return;
 		});
-		let data = await response.json().catch(err=>{
+		let data = await response.json().catch(err => {
 			return;
 		});
 		if (!data) return;
 		if (data.sm_api_error) return;
 		let summary = data.sm_api_content;
-		message.react('❓');
+		await message.react('❓');
 		const newfilter = (reaction, user) => {
 			return ['❓'].includes(reaction.emoji.name) && user.bot == false;
 		};
-		message.awaitReactions(newfilter, { max: 1, time: 300000, errors: ['time'] })
+		await message.awaitReactions(newfilter, { max: 1, time: 300000, errors: ['time'] })
 			.then(async collected => {
 				const waitreaction = collected.first();
+				var reacted_user = collected.first().users.cache.map(user => user.username + "#" + user.discriminator);
 				if (waitreaction.emoji.name === '❓') {
+					message.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
 
 					//To handle the limitations of text by discord 
 					if (data.sm_api_character_count > 2048) {
@@ -40,7 +42,7 @@ module.exports = async message => {
 							.setTitle(data.sm_api_title)
 							.setColor('#FF7F50')
 							.setDescription(summary)
-							.setFooter(`Click on the forward button to go to the next page.\nPage [1/2]`);
+							.setFooter(`Click on the forward button to go to the next page.\nPage [1/2]\nRequested by ${reacted_user[1]}`);
 
 						const filter = (reaction, user) => {
 							return ['⏩'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -56,7 +58,7 @@ module.exports = async message => {
 											.setTitle(data.sm_api_title)
 											.setColor('#FF7F50')
 											.setDescription(data.sm_api_content.substring(2043, data.sm_api_content.length))
-											.setFooter(`I have reduced the article for you by ${data.sm_api_content_reduced}\nPage[2/2]`);
+											.setFooter(`I have reduced the article for you by ${data.sm_api_content_reduced}\nPage[2/2]\nRequested by ${reacted_user[1]}`);
 										sentembed.edit(editembed);
 									}
 								});
@@ -68,10 +70,13 @@ module.exports = async message => {
 							.setTitle(data.sm_api_title)
 							.setColor('#FF7F50')
 							.setDescription(summary)
-							.setFooter(`I have reduced the article for you by ${data.sm_api_content_reduced}`);
+							.setFooter(`I have reduced the article for you by ${data.sm_api_content_reduced}\nRequested by ${reacted_user[1]}`);
 						message.channel.send(embed);
 					}
 				}
+			})
+			.catch(collected => {
+				message.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
 			});
 	}
 };

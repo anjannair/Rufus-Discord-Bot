@@ -116,11 +116,46 @@ module.exports = class rufus extends Command {
                     }
                 }
                 if (a == "n" || a == "N") {
-                    message.reply("Aight");
+                    message.reply("Moving ahead");
                 }
             }
         } catch (err) {
             message.reply("Image setting cancelled");
+        }
+
+        //Mention role
+        message.reply("Would you like to mention role/everyone? (y/n)");
+        let answer3;
+        let role;
+        try {
+            const filter = m => {
+                if (m.author.bot) return false;
+                if (m.author == message.author) return true;
+            };
+            answer3 = await message.channel.awaitMessages(filter, { max: 1, time: 600000, errors: ['time'] });
+            if (answer3) {
+                var a = answer3.map(m => m.content);
+                if (a == "y" || a == "Y") {
+                    message.reply("Mention the role or mention everyone");
+                    try {
+                        const filter = m => {
+                            if (m.author.bot) return false;
+                            if (m.author == message.author) return true;
+                        };
+                        role = await message.channel.awaitMessages(filter, { max: 1, time: 600000, errors: ['time'] });
+                        if (role) {
+                            message.channel.send("Mention set");
+                        }
+                    } catch (err) {
+                        message.reply("Mention setting cancelled");
+                    }
+                }
+                if (a == "n" || a == "N") {
+                    message.reply("Aight");
+                }
+            }
+        } catch (err) {
+            message.reply("Mention setting cancelled");
         }
 
         if (thumbimage && image) {
@@ -158,27 +193,50 @@ module.exports = class rufus extends Command {
 
         //Checking if user is satisfied with the setup
         message.reply("Is this the final message?");
-        let check;
-        message.channel.send(embed).then(m => {
-            m.react('✔️');
-            m.react('❌');
-            const newfilter = (reaction, user) => {
-                return ['✔️', '❌'].includes(reaction.emoji.name) && user.bot == false && user == message.author;
-            };
-            m.awaitReactions(newfilter, { max: 1, time: 300000, errors: ['time'] })
-                .then(async collected => {
-                    const waitreaction = collected.first();
-                    if (waitreaction.emoji.name === '✔️') {
-                        message.reply(`Alright! Sending the details to the channel`);
-                        channel.send(embed);
-                    }
-                    if (waitreaction.emoji.name === '❌') {
-                        return message.reply("Terminating session..!\nPro tip: Take your time to write the message you have 10 minutes per question!");
-                    }
-                });
-        }).catch(err => {
-            return message.reply("The link you entered in the thumbnail/image is incorrect please recheck");
-        });
+        if (!role) {
+            message.channel.send(embed).then(m => {
+                m.react('✔️');
+                m.react('❌');
+                const newfilter = (reaction, user) => {
+                    return ['✔️', '❌'].includes(reaction.emoji.name) && user.bot == false && user == message.author;
+                };
+                m.awaitReactions(newfilter, { max: 1, time: 300000, errors: ['time'] })
+                    .then(async collected => {
+                        const waitreaction = collected.first();
+                        if (waitreaction.emoji.name === '✔️') {
+                            message.reply(`Alright! Sending the details to the channel`);
+                            channel.send(embed);
+                        }
+                        if (waitreaction.emoji.name === '❌') {
+                            return message.reply("Terminating session..!\nPro tip: Take your time to write the message you have 10 minutes per question!");
+                        }
+                    });
+            }).catch(err => {
+                return message.reply("The link you entered in the thumbnail/image is incorrect please recheck");
+            });
+        }
+        if (role) {
+            message.channel.send(role.map(r => r.content), embed).then(m => {
+                m.react('✔️');
+                m.react('❌');
+                const newfilter = (reaction, user) => {
+                    return ['✔️', '❌'].includes(reaction.emoji.name) && user.bot == false && user == message.author;
+                };
+                m.awaitReactions(newfilter, { max: 1, time: 300000, errors: ['time'] })
+                    .then(async collected => {
+                        const waitreaction = collected.first();
+                        if (waitreaction.emoji.name === '✔️') {
+                            message.reply(`Alright! Sending the details to the channel`);
+                            channel.send(role.map(r => r.content),embed);
+                        }
+                        if (waitreaction.emoji.name === '❌') {
+                            return message.reply("Terminating session..!\nPro tip: Take your time to write the message you have 10 minutes per question!");
+                        }
+                    });
+            }).catch(err => {
+                return message.reply("The link you entered in the thumbnail/image is incorrect please recheck");
+            });
+        }
 
     }
 };

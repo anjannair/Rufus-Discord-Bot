@@ -40,8 +40,14 @@ module.exports = class rufus extends Command {
 			.setFooter(`You were banned from ${message.guild.name} for reason: ${reas}`, `${message.author.avatarURL({ dynamic: true })}`);
 		message.channel.messages.fetch(a).then(msg => msg.delete({ timeout: 1000 }));
 		if (message.guild.member(user.id)) {
+			let mentioned_role = message.guild.member(user.id).roles.highest;
+
+			if (message.member.roles.highest.comparePositionTo(mentioned_role) < 1) return message.reply("You cannot use the command on a role higher or equal to yours!");
+
 			if (user.bot != true) {
-				await user.send(embs1);
+				await user.send(embs1).catch(err => {
+					return;
+				});
 			}
 		}
 		await message.guild.members.ban(user.id, { reason: reas + `, By: ${message.author.tag}` }).catch(err => {

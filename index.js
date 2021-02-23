@@ -12,7 +12,6 @@ const config = require(path.resolve(__dirname, "config.json"));
 const client = new CommandoClient({
 	commandPrefix: config.prefix,
 	owner: process.env.OWNERS.split(','),	//if you're helping in developing this add your ID
-	disableMentions: 'everyone',
 	ws: { intents: Discord.Intents.ALL },
 	partials: ['MESSAGE']
 });

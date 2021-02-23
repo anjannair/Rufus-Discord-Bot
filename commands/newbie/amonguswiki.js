@@ -19,7 +19,7 @@ module.exports = class rufus extends Command {
 	}
 
 	async run(message,{query}) {
-        var neb = query;
+        var neb = query.split(' ').join('_');
         if(!neb) return message.channel.send("Input something to search for!");
         message.channel.send("https://among-us-wiki.fandom.com/wiki/"+neb);
 	}

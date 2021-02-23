@@ -2,6 +2,7 @@
 const Discord = require("discord.js");
 const { Command } = require('discord.js-commando');
 
+//Have not checked if this works correctly
 module.exports = class rufus extends Command {
     constructor(client) {
         super(client, {

@@ -10,7 +10,7 @@ module.exports = async (member) => {
     var embs = new Discord.MessageEmbed()
         .setColor('#E7A700')
         .setTitle(`Welcome to ${member.guild.name}`)
-        .setDescription(`You are now with ${member.guild.memberCount} members\n\nIf you find yourself facing any difficulties contact the admins of the server or the owner of the bot agentmurphy#6969`);
+        .setDescription(`You are now with ${member.guild.memberCount} members\n\nIf you find yourself facing any difficulties contact the admins of the server or the owner of the bot`);
     member.send(embs).catch(err => {
         console.log("Cannot send message to this user");
     });
