@@ -11,7 +11,7 @@
   "dependencies": {
     "canvas": "^2.6.1",
     "cheerio": "^1.0.0-rc.3",
-    "discord-tictactoe": "^2.0.7",
+    "discord-tictactoe": "^2.0.8",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.13.0",
