@@ -10,7 +10,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "canvas": "^2.6.1",
-    "cheerio": "^1.0.0-rc.3",
+    "cheerio": "^1.0.0-rc.5",
     "discord-tictactoe": "^2.0.8",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
