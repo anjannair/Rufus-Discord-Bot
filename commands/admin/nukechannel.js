@@ -10,7 +10,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("You cannot use this command");
-    if(!message.guild.me.hasPermission("MANAGE_CHANNELS")) return message.channel.send("My doesn't have the permission \`MANAGE_CHANNELS\`");
+    if(!message.guild.me.hasPermission("MANAGE_CHANNELS")) return message.channel.send("I do not have the permission \`MANAGE_CHANNELS\`");
     
     let reason = args.join(" ");
     const nukeChannel = message.channel;
