@@ -14,11 +14,11 @@ module.exports = class verify extends Command {
                 prompt: 'Whom do you want to know about?',
                 type: 'user',
             }],
-            userPermissions: ['KICK_MEMBERS'],
         });
     }
 
     async run(message, { who }) {
+        message.delete({ timeout: 60000 });
         //user
         let accountcreatedate = who.createdAt.toString();
         let useravatar = who.displayAvatarURL({ dynamic: true });
@@ -61,8 +61,10 @@ module.exports = class verify extends Command {
                 .addField("Last message channel: ", lastmessagechannel)
                 .setFooter(`Requested by ${message.author.tag}`, `${message.author.avatarURL({ dynamic: true })}`)
                 .setTimestamp();
-            //console.log(member.permissions.toArray());
-            message.channel.send(embed);
+            //auto delete text to prevent spam
+            message.channel.send(embed).then((msg) => {
+                if (msg) msg.delete({ timeout: 60000 });
+            });
 
         }
         else {
@@ -75,7 +77,9 @@ module.exports = class verify extends Command {
                 .setFooter(`Requested by ${message.author.tag}`, `${message.author.avatarURL({ dynamic: true })}`)
                 .setTimestamp();
 
-            message.channel.send(embed);
+            message.channel.send(embed).then((msg) => {
+                if (msg) msg.delete({ timeout: 60000 });
+            });
         }
 
     }

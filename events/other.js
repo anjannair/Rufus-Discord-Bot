@@ -8,9 +8,6 @@ var store = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
 });
 
 module.exports = async message => {
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
   let check;
   try {
