@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 /***
 * @param {Discord.client} bot the discord bot client.
@@ -24,14 +24,14 @@ module.exports.run = async (bot, message, args) => {
         .addField("Forks :gear:", `${uriJson.forks}`, true)
         .addField("Language :desktop:", `${uriJson.language}`, true)
         .setImage(uriJson.owner.avatar_url)
-        .setColor("#ffff")
-      return message.channel.send(embed)
+        .setColor("#ffff");
+      return message.channel.send(embed);
     } else {
-      return message.channel.send("Unable to find the mentioned repository. Please make sure you have entered the correct user/repository. \`*github [user] [repository]\`")
+      return message.channel.send("Unable to find the mentioned repository. Please make sure you have entered the correct user/repository. `*github [user] [repository]`");
     }
 };
 
 module.exports.help = {
 	name: "github",
-	aliases: ['github']
+	aliases: ['git']
 };
