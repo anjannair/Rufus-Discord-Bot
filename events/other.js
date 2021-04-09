@@ -1,6 +1,5 @@
 const config = require('../config.json');
 const discord = require("discord.js");
-const { Command } = require('discord.js-commando');
 var memjs = require('memjs');
 var store = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
     username: process.env.MEMCACHEDCLOUD_USERNAME,
