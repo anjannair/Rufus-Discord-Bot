@@ -35,7 +35,7 @@ TLDR = //YOUR SMMRY API
 # Features
 • Automeme feature - Post memes every one hour (time can be changed) from an array of subreddits at random. The API link in the array can be edited to add more subreddits.
 
-Transcript aka chat exporter - Generate an html transcript of your channel and export the chats in that format (Still in development)
+• Transcript aka chat exporter - Generate an html transcript of your channel and export the chats in that format (Still in development)
 
 • Manuals - A lot of my friends were new to the enviornment of discord. To easen them up they only had to remember one prefix only and a the bot name they wanted to know about.
 
