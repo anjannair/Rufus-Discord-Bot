@@ -17,6 +17,7 @@ const document = dom.window.document;
 * @param {array} args an array of arguments
  */
 module.exports.run = async (bot, message, args) => {
+    if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("You need the MANAGE MESSAGE permissions to do that");
     await message.delete();
     let messageCollection = new discord.Collection();
     let channelMessages = await message.channel.messages.fetch({
