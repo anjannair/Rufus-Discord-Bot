@@ -5,7 +5,7 @@ module.exports = class rufus extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'prune',
-			aliases: ['clear', 'clean'],
+			aliases: ['clear'],
 			group: 'admin',
 			memberName: 'prune',
 			description: 'Clears the number of messages mentioned',

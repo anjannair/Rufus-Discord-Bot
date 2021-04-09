@@ -4,9 +4,9 @@ const { Command } = require('discord.js-commando');
 module.exports = class rufus extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'clean',
+			name: 'bclean',
 			group: 'admin',
-			memberName: 'clean',
+			memberName: 'bclean',
 			description: 'Clears recent bot messages from the channel',
 			guildOnly: true,
 			clientPermissions: ['MANAGE_MESSAGES'],
