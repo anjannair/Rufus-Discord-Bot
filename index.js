@@ -1,7 +1,6 @@
 const fs = require("fs");
 const Discord = require('discord.js');
 const Canvas = require('canvas');
-const lineReader = require('line-reader');
 const request = require("request");
 const config = require("./config.json");
 require('dotenv').config();
