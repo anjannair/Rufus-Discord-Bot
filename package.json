@@ -18,7 +18,7 @@
     "jsdom": "^16.5.3",
     "line-reader": "^0.4.0",
     "memjs": "^1.3.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.0.0",
     "node-superfetch": "^0.2.3",
     "node-virustotal": "^3.32.0",
     "request": "^2.88.2"
