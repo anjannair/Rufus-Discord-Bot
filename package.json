@@ -13,7 +13,7 @@
     "cheerio": "^1.0.0-rc.9",
     "discord-tictactoe": "^2.1.0",
     "discord.js": "^12.5.3",
-    "dotenv": "^10.0.0",
+    "dotenv": "^15.0.0",
     "eslint": "^8.2.0",
     "jsdom": "^17.0.0",
     "line-reader": "^0.4.0",
